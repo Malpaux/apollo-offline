@@ -1,0 +1,11 @@
+{
+  "compilerOptions": {
+    "module": "CommonJS"
+  },
+  "extends": "./tsconfig",
+  "exclude": [
+    "node_modules",
+    "**/*.test.*",
+    "__mocks__"
+  ]
+}

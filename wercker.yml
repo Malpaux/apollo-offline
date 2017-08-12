@@ -1,0 +1,33 @@
+box: node
+
+build:
+  steps:
+    # Install yarn & project dependencies
+    - script:
+      name: install yarn
+      code: npm install -g yarn
+    - script:
+      name: set yarn cache
+      code: export YARN_CACHE=$WERCKER_CACHE_DIR/yarn
+    - script:
+      name: install dependencies
+      code: HOME=$YARN_CACHE yarn
+
+    # Check code & build
+    - script:
+      name: lint
+      code: npm run lint
+    - npm-test
+    - script:
+      name: build
+      code: npm run build
+
+    # Clean-up & pass to deploy pipeline
+    - script:
+      name: copy build
+      code: cp -a dist/. package.json yarn.lock LICENSE README.md "$WERCKER_OUTPUT_DIR"
+
+deploy:
+  steps:
+    # Publish to npm
+    - turistforeningen/npm-publish

@@ -1,0 +1,13 @@
+# dependencies
+node_modules
+
+# test coverage
+coverage/
+
+# production
+dist/
+
+# misc
+.env
+npm-debug.log
+yarn-error.log

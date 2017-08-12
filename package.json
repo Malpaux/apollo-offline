@@ -1,0 +1,74 @@
+{
+  "name": "apollo-offline",
+  "version": "0.0.1",
+  "description": "An offline toolkit for the Apollo client",
+  "keywords": [
+    "apollo",
+    "redux",
+    "offline",
+    "web",
+    "react",
+    "typescript"
+  ],
+  "homepage": "https://github.com/Malpaux/apollo-offline#readme",
+  "bugs": {
+    "url": "https://github.com/Malpaux/apollo-offline/issues"
+  },
+  "license": "BSD-3-Clause",
+  "author": "Malpaux (malpaux.com)",
+  "contributors": [
+    {
+      "name": "Paul Brachmann",
+      "email": "paul.brachmann@malpaux.com"
+    }
+  ],
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Malpaux/apollo-offline.git"
+  },
+  "scripts": {
+    "build": "tsc -p ./tsconfig.prod.json -d",
+    "clean": "rimraf dist",
+    "lint": "tslint --project tsconfig.json",
+    "lint:fix": "tslint --project tsconfig.json --fix",
+    "test": "jest",
+    "test:coverage": "jest --coverage"
+  },
+  "dependencies": {},
+  "devDependencies": {
+    "@types/jest": "^20.0.2",
+    "apollo-client": "^1.9.1",
+    "jest": "^20.0.4",
+    "redux": "^3.7.2",
+    "redux-offline": "^2.0.0",
+    "rimraf": "^2.6.1",
+    "ts-jest": "^20.0.7",
+    "tslint": "^5.5.0",
+    "tslint-config-airbnb": "^5.2.1",
+    "typescript": "^2.4.1"
+  },
+  "peerDependencies": {
+    "apollo-client": "^1.9.1",
+    "redux": "^3.7.2",
+    "redux-offline": "^2.0.0"
+  },
+  "jest": {
+    "moduleFileExtensions": [
+      "ts",
+      "js",
+      "json"
+    ],
+    "transform": {
+      ".(ts|tsx)": "<rootDir>/node_modules/ts-jest/preprocessor.js"
+    },
+    "mapCoverage": true,
+    "roots": [
+      "<rootDir>/src/"
+    ],
+    "testRegex": "(/__tests__/.*|(\\.|/)(test|spec))\\.(ts|js)$",
+    "testPathIgnorePatterns": [
+      "<rootDir>/(build|dist|docs|node_modules)/"
+    ],
+    "testEnvironment": "node"
+  }
+}
