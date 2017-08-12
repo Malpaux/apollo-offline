@@ -160,3 +160,48 @@ const wrappedComponent = graphql(
   },
 )(/* Your component here */);
 ```
+
+## Developing
+
+This is what you do after you have cloned the repository:
+
+```shell
+yarn / npm install
+```
+
+(Install dependencies)
+
+### Linting
+
+Execute TSLint
+
+```shell
+npm run lint
+```
+
+Try to automatically fix linting errors
+```shell
+npm run lint:fix
+```
+
+### Testing
+
+Execute Jest unit tests using
+
+```shell
+npm test
+
+npm run test:coverage
+```
+
+Tests are defined in the same directory the module lives in. They are specified in '[module].test.js' files.
+
+### Building
+
+To build the project, execute
+
+```shell
+npm run build
+```
+
+This saves the production ready code into 'dist/'.
