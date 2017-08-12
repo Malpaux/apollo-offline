@@ -8,10 +8,12 @@ Apollo-Offline is built on top [Redux-Offline](https://github.com/jevakallio/red
 
 It aims to make use of Apollo's existing offline(-ish) features (e.g. built-in caching and optimistic responses for mutations). This means when migrating, your code won't have to change a lot (as long as you are already using these features).
 
+
+#### Optimistic Fetch
 > With Apollo-Offline, the code of your queries and mutations looks exactly like it would without.
 
 However, there is one exception: The *"optimistic fetch"* feature.  
-What this does is it tries to first read a query's response from the cache, but if (and only if!) a network connection is available will get the server's response in the background and write it to the cache (at this point e.g. wrapped React components will update a second time).
+What this does, is it tries to first read a query's response from the cache, but if (and only if!) a network connection is available will get the server's response in the background and write it to the cache (at that point e.g. wrapped React components will update a second time).
 
 Basically this means your UI's queries will always work if the requested data is available in the local cache and it will always keep the cached data consistent with your server data if it can be reached.
 
@@ -118,11 +120,13 @@ import App from './App'; // Your main application component
 const Rehydrated = connect(({ rehydrated }) => ({ rehydrated }))
   ((props) => props.rehydrated ? props.children : props.loading);
 
+const Loading = () => <div> Loading... </div>;
+
 ReactDOM.render(
   <ApolloProvider client={client} store={store}>
-    <Rehydrate>
+    <Rehydrated loading={Loading}>
       <App />
-    </Rehydrate>
+    </Rehydrated>
   </ApolloProvider>,
   document.getElementById('root'),
 );
