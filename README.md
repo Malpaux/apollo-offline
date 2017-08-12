@@ -6,6 +6,19 @@ Apollo-Offline provides a custom network interface and Redux store enhancer that
 
 Apollo-Offline is built on top [Redux-Offline](https://github.com/jevakallio/redux-offline) (and thus inherits all of is features).
 
+It aims to make use of Apollo's existing offline(-ish) features (e.g. built-in caching and optimistic responses for mutations). This means when migrating, your code won't have to change a lot (as long as you are already using these features).
+
+> With Apollo-Offline, the code of your queries and mutations looks exactly like it would without.
+
+However, there is one exception: The *"optimistic fetch"* feature.  
+What this does is it tries to first read a query's response from the cache, but if (and only if!) a network connection is available will get the server's response in the background and write it to the cache (at this point e.g. wrapped React components will update a second time).
+
+Basically this means your UI's queries will always work if the requested data is available in the local cache and it will always keep the cached data consistent with your server data if it can be reached.
+
+*Note: In my opinion, this is what ```fetchPolicy: 'cache-and-network'``` should do (but doesn't - it errors if the server can't be reached).*
+
+For instructions on how to use it, see the examples below.
+
 ## Install
 
 using [yarn](https://yarnpkg.com/en/)
@@ -23,23 +36,9 @@ Apollo-Offline additionally requires you to have the following peer dependencies
 - ```redux```
 - ```redux-offline```
 
-## Usage
-Apollo-Offline aims to make use of Apollo's existing offline(-ish) features (e.g. built-in caching and optimistic responses for mutations). This means when migrating, your code won't have to change a lot (as long as you are already using these features).
+## Usage (Examples)
 
-> With Apollo-Offline, the code of your queries and mutations looks exactly like it would without.
-
-However, there is one exception: The *"optimistic fetch"* feature.  
-What this does is it tries to first read a query's response from the cache, but if (and only if!) a network connection is available will get the server's response in the background and write it to the cache (at this point e.g. wrapped React components will update a second time).
-
-Basically this means your UI's queries will always work if the requested data is available in the local cache and it will always keep the cached data consistent with your server data if it can be reached.
-
-*Note: In my opinion, this is what ```fetchPolicy: 'cache-and-network'``` should do (but doesn't - it errors if the server can't be reached).*
-
-For instructions on how to use it, see the examples below.
-
-### Examples
-
-#### Setup
+### Setup
 ```javascript
 import { ApolloClient, createNetworkInterface } from 'apollo-client';
 import { applyMiddleware, combineReducers, compose, createStore } from 'redux';
@@ -80,7 +79,7 @@ export const store = createStore(
 );
 ```
 
-#### Vanilla JS
+### Vanilla JS
 ```javascript
 /* Setup here... */
 
@@ -104,7 +103,7 @@ client.mutate({
 });
 ```
 
-#### React
+### React
 In your entry point:
 
 ```javascript
