@@ -28,7 +28,7 @@ export default class OfflineNetworkInterface implements NetworkInterface {
 
   /** Send a request */
   public query(request: Request) {
-    return new Promise((resolve) => {
+    return new Promise((resolve, reject) => {
       const { variables } = request;
       if (variables && (variables as { [key: string]: any }).__offline__ && this.client) {
         // __offline__ flag passed: Try using cached result & queue network fetch
@@ -63,7 +63,7 @@ export default class OfflineNetworkInterface implements NetworkInterface {
       }
 
       // No store passed/reading from cache failed -> fall back to standard transport
-      this.networkInterface.query(request).then(resolve);
+      this.networkInterface.query(request).then(resolve).catch(reject);
     });
   }
 
