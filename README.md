@@ -124,7 +124,7 @@ const Loading = () => <div> Loading... </div>;
 
 ReactDOM.render(
   <ApolloProvider client={client} store={store}>
-    <Rehydrated loading={Loading}>
+    <Rehydrated loading={<Loading />}>
       <App />
     </Rehydrated>
   </ApolloProvider>,
