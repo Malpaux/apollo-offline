@@ -30,20 +30,27 @@ export default class OfflineNetworkInterface implements NetworkInterface {
   public query(request: Request) {
     return new Promise((resolve, reject) => {
       const { variables } = request;
-      if (variables && (variables as { [key: string]: any }).__offline__ && this.client) {
-        // __offline__ flag passed: Try using cached result & queue network fetch
+      if (variables && (
+        (variables as { [key: string]: any }).__offline__
+        || (variables as { [key: string]: any }).__online__
+      )) {
+        if ((variables as { [key: string]: any }).__offline__ && this.client) {
+          // __offline__ flag passed: Try using cached result & queue network fetch
 
-        try {
-          // Try to read optimistic response from cache
-          resolve({ data: this.client.readQuery(request as any) });
+          try {
+            // Try to read optimistic response from cache
+            resolve({ data: this.client.readQuery(request as any) });
 
-          // Queue fetch network request
-          this.networkInterface.query(request).then(({ data }) =>
-            this.client && this.client.writeQuery({ ...(request as any), data }),
-          ).catch(() => {/* ignore */});
+            // Queue fetch network request
+            this.networkInterface.query(request).then(({ data }) =>
+              this.client && this.client.writeQuery({ ...(request as any), data }),
+            ).catch(() => {/* ignore */});
 
-          return;
-        } catch (ignore) {/* fall-through */}
+            return;
+          } catch (ignore) {/* fall-through */}
+        }
+
+        // Fall-through (for fallback & __online__ flag
       } else if (this.store) {
         // Store w/ redux-offline exists -> queue request
         return this.store.dispatch({

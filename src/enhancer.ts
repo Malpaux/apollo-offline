@@ -64,10 +64,10 @@ export default (
           : Promise.reject('Unhandled offline effect');
         },
         persistCallback: () => {
+          if (persistCallback) persistCallback();
+
           // Store has been rehydrated
           store.dispatch({ type: REHYDRATE_STORE });
-
-          if (persistCallback) persistCallback();
         },
         persistOptions: {
           ...persistOptions,

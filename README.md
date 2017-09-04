@@ -81,6 +81,9 @@ export const store = createStore(
 );
 ```
 
+*Note: Once set up, apollo-offline intercepts all queries/mutations to enable its seamless offline-first behaviour.  
+If you want to selectively exclude some queries/mutations from this, you can revert back to Apollo's default behaviour by adding an ```__online__``` field with a truthy value to the query variables of that specific query/mutation (i.e. ```variables: { __online__: true }```).*
+
 ### Vanilla JS
 ```javascript
 /* Setup goes here... */

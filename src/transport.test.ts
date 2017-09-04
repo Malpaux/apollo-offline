@@ -40,7 +40,7 @@ describe('offline network interface', () => {
     const store = createMockStore();
     networkInterface.store = store;
     const promise = networkInterface.query(request);
-    expect(store._actions.length).toBe(1);
+    expect(store.dispatch).toHaveBeenCalledTimes(1);
     expect(store._actions[0].meta.offline.effect.request).toBe(request);
 
     const response2 = { data: {} };
@@ -96,6 +96,21 @@ describe('offline network interface', () => {
 
     expect(await networkInterface.setClient(client).query(request2)).toBe(response);
     expect(client.readQuery).toHaveBeenCalledTimes(1);
+    expect(client.writeQuery).toHaveBeenCalledTimes(0);
+    expect(mockNetworkInterface.query).toHaveBeenCalledTimes(1);
+
+    // Test selective opt-out through __online__ flag
+    jest.clearAllMocks();
+
+    const request3 = {
+      operationName: 'SomeQuery',
+      query: {} as any,
+      variables: { __online__: true },
+    };
+
+    expect(await networkInterface.setClient(client).query(request3)).toBe(response);
+    expect(store.dispatch).toHaveBeenCalledTimes(0);
+    expect(client.readQuery).toHaveBeenCalledTimes(0);
     expect(client.writeQuery).toHaveBeenCalledTimes(0);
     expect(mockNetworkInterface.query).toHaveBeenCalledTimes(1);
   });

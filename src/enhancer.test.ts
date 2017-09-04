@@ -37,7 +37,7 @@ describe('store enhancer', () => {
     })(createMockStore)(
       () => ({ reducer: true }),
       {},
-      (x) => x,
+      (x: any) => x,
     );
 
     expect(offline).toHaveBeenCalledTimes(2);
