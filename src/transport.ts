@@ -42,8 +42,8 @@ export default class OfflineNetworkInterface implements NetworkInterface {
             resolve({ data: this.client.readQuery(request as any) });
 
             // Queue fetch network request
-            this.networkInterface.query(request).then(({ data }) =>
-              this.client && this.client.writeQuery({ ...(request as any), data }),
+            this.networkInterface.query(request).then(({ data, errors }) =>
+              this.client && !errors && this.client.writeQuery({ ...(request as any), data }),
             ).catch(() => {/* ignore */});
 
             return;
