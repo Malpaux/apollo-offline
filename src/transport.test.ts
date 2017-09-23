@@ -90,6 +90,18 @@ describe('offline network interface', () => {
     expect(mockNetworkInterface.query).toHaveBeenCalledTimes(1);
     jest.clearAllMocks();
 
+    // Test server error handling (optimistic query response)
+    const errorResponse = { errors: ['error'], data: {} };
+    (mockNetworkInterface.query as any).mockImplementation(() => Promise.resolve(errorResponse));
+
+    expect(((await networkInterface.setClient(client).query(request2)) as any).data)
+      .toBe(response3);
+    expect(client.readQuery).toHaveBeenCalledTimes(1);
+    expect(client.writeQuery).toHaveBeenCalledTimes(0);
+    expect(mockNetworkInterface.query).toHaveBeenCalledTimes(1);
+    jest.clearAllMocks();
+    (mockNetworkInterface.query as any).mockImplementation(() => Promise.resolve(response));
+
     // Test fallback when reading query from cache fails
     (client.readQuery as any).mockImplementation(() => { throw new Error(); });
     (client.writeQuery as any).mockReset();
