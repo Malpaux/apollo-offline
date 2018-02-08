@@ -50,7 +50,7 @@ export default class OfflineNetworkInterface implements NetworkInterface {
           } catch (ignore) {/* fall-through */}
         }
 
-        // Fall-through (for fallback & __online__ flag
+        // Fall-through (for fallback & __online__ flag)
       } else if (this.store) {
         // Store w/ redux-offline exists -> queue request
         return this.store.dispatch({

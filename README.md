@@ -19,7 +19,8 @@ Basically this means your UI's queries will always work if the requested data is
 
 *Note: In my opinion, this is what ```fetchPolicy: 'cache-and-network'``` should do (but doesn't - it errors if the server can't be reached).*
 
-For instructions on how to use it, see the examples below.
+To enable it, add an ```__offline__``` field with a truthy value to the query variables of that specific query (i.e. ```variables: { __offline__: true }```).  
+For further instructions, see the examples below.
 
 ## Install
 
@@ -96,7 +97,7 @@ client.query({
   fetchPolicy: 'network-only',
   query: /* Your query here */,
   variables: {
-    __offline__: true,
+    __offline__: true, // Enable optimistic fetch
   },
 });
 
@@ -150,7 +151,7 @@ const wrappedComponent = graphql(
     options: {
       fetchPolicy: 'network-only',
       variables: {
-        __offline__: true,
+        __offline__: true, // Enable optimistic fetch
       },
     },
   },
