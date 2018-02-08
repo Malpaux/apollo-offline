@@ -37,7 +37,6 @@ npm install --save apollo-offline
 Apollo-Offline additionally requires you to have the following peer dependencies installed:
 - ```apollo-client```
 - ```redux```
-- ```redux-offline```
 
 ## Usage (Examples)
 

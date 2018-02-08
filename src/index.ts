@@ -15,7 +15,7 @@ import enhancer from './enhancer';
 import OfflineNetworkInterface, { NetworkInterface } from './transport';
 
 // Reexport to include in generated type definitions
-import { Config } from 'redux-offline';
+import { Config } from '@redux-offline/redux-offline/lib/types';
 export { Config as EnhancerConfig };
 
 /** Create toolkit from original network interface */

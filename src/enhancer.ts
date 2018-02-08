@@ -5,8 +5,9 @@
  * @license Copyright (c) 2017 Malpaux IoT All Rights Reserved.
  */
 
+import { offline as reduxOffline } from '@redux-offline/redux-offline';
+import { Config } from '@redux-offline/redux-offline/lib/types';
 import { compose } from 'redux';
-import { Config, offline as reduxOffline } from 'redux-offline';
 
 import { APOLLO_OFFLINE_QUEUE, REHYDRATE_STORE } from './constants';
 import rehydrateReducer from './reducer';

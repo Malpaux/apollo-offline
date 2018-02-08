@@ -4,7 +4,7 @@
  * @license Copyright (c) 2017 Malpaux IoT All Rights Reserved.
  */
 
-jest.mock('redux-offline', () => ({
+jest.mock('@redux-offline/redux-offline', () => ({
   offline: jest.fn((): any => (createStore: any) => (
       reducer: any,
       preloadedState: any,
@@ -12,8 +12,8 @@ jest.mock('redux-offline', () => ({
     ) => createStore(reducer, preloadedState, _enhancer)),
 }));
 
-import { offline } from 'redux-offline';
-import config from 'redux-offline/lib/defaults';
+import { offline } from '@redux-offline/redux-offline';
+import config from '@redux-offline/redux-offline/lib/defaults';
 import { createMockStore, MockOfflineNetworkInterface } from './__mocks__';
 import { APOLLO_OFFLINE_QUEUE, REHYDRATE_STORE } from './constants';
 
