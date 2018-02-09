@@ -38,13 +38,13 @@
     "@redux-offline/redux-offline": "^2.3.1"
   },
   "devDependencies": {
-    "@types/jest": "^20.0.2",
-    "apollo-client": "^1.9.1",
-    "jest": "^20.0.4",
+    "@types/jest": "^22.1.1",
+    "apollo-client": "^1.9.3",
+    "jest": "^22.2.1",
     "redux": "^3.7.2",
     "rimraf": "^2.6.1",
-    "ts-jest": "^20.0.7",
-    "tslint": "^5.5.0",
+    "ts-jest": "^22.0.3",
+    "tslint": "^5.9.1",
     "tslint-config-airbnb": "^5.2.1",
     "typescript": "^2.7.1"
   },

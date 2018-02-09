@@ -24,11 +24,13 @@ export default (
 ) => {
   const { persistCallback, persistOptions } = config;
 
+  /* tslint:disable:strict-boolean-expressions */
   // Blacklist rehydrated flag
   const blacklist = persistOptions && persistOptions.blacklist ?
     persistOptions.blacklist
   : [];
   blacklist.push(rehydratedKey);
+  /* tslint:enable */
 
   // Create enhanced redux store
   const store = createStore(
@@ -59,12 +61,15 @@ export default (
               });
           }
 
+          /* tslint:disable:strict-boolean-expressions */
           // Unknown effect type
           return config && config.effect ?
             config.effect(effect, action)
           : Promise.reject('Unhandled offline effect');
+          /* tslint:enable */
         },
         persistCallback: () => {
+          // tslint:disable-next-line:strict-boolean-expressions
           if (persistCallback) persistCallback();
 
           // Store has been rehydrated

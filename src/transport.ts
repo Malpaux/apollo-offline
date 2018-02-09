@@ -43,6 +43,7 @@ export default class OfflineNetworkInterface implements NetworkInterface {
 
             // Queue fetch network request
             this.networkInterface.query(request).then(({ data, errors }) =>
+              // tslint:disable-next-line:strict-boolean-expressions
               this.client && !errors && this.client.writeQuery({ ...(request as any), data }),
             ).catch(() => {/* ignore */});
 

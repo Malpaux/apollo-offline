@@ -20,6 +20,7 @@
       ],
       "alphabetize": true
     }],
+    "no-submodule-imports": [true, "@redux-offline/redux-offline"],
     "no-use-before-declare": true,
     "object-shorthand-properties-first": false,
     "ordered-imports": true,
