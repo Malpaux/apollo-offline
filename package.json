@@ -34,10 +34,8 @@
     "test": "jest",
     "test:coverage": "jest --coverage"
   },
-  "dependencies": {
-    "@redux-offline/redux-offline": "^2.3.1"
-  },
   "devDependencies": {
+    "@redux-offline/redux-offline": "^2.3.1",
     "@types/jest": "^22.1.1",
     "apollo-client": "^1.9.3",
     "jest": "^22.2.1",
@@ -49,6 +47,7 @@
     "typescript": "^2.7.1"
   },
   "peerDependencies": {
+    "@redux-offline/redux-offline": "^2.3.1",
     "apollo-client": "^1.9.1",
     "redux": "^3.7.2"
   },

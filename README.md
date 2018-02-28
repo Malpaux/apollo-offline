@@ -44,7 +44,7 @@ Apollo-Offline additionally requires you to have the following peer dependencies
 ```javascript
 import { ApolloClient, createNetworkInterface } from 'apollo-client';
 import { applyMiddleware, combineReducers, compose, createStore } from 'redux';
-import config from 'redux-offline/lib/defaults';
+import config from '@redux-offline/redux-offline/lib/defaults';
 
 import offline from 'apollo-offline';
 
