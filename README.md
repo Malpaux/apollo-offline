@@ -4,7 +4,7 @@
 
 Apollo-Offline provides a custom network interface and Redux store enhancer that enable seamless offline-first app development using the Apollo GraphQL client.
 
-Apollo-Offline is built on top [Redux-Offline](https://github.com/jevakallio/redux-offline) (and thus inherits all of is features).
+Apollo-Offline is built on top of [Redux-Offline](https://github.com/jevakallio/redux-offline) (and thus inherits all of its features).
 
 It aims to make use of Apollo's existing offline(-ish) features (e.g. built-in caching and optimistic responses for mutations). This means when migrating, your code won't have to change a lot (as long as you are already using these features).
 
