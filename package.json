@@ -1,6 +1,6 @@
 {
   "name": "apollo-offline",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "An offline toolkit for the Apollo client",
   "keywords": [
     "apollo",
