@@ -1,6 +1,6 @@
 # Offline toolkit for Apollo
 
-[![wercker status](https://app.wercker.com/status/49f7bc2d8750d6799ca861e12897208f/s/master "wercker status")](https://app.wercker.com/project/byKey/49f7bc2d8750d6799ca861e12897208f)
+> **Status: unmaintained.** Apollo-Offline targets Apollo Client 1.x. Apollo Client 2.0 moved away from Redux, so this approach does not work with later versions (see [#14](https://github.com/Malpaux/apollo-offline/issues/14)).
 
 Apollo-Offline provides a custom network interface and Redux store enhancer that enable seamless offline-first app development using the Apollo GraphQL client.
 
@@ -10,7 +10,7 @@ It aims to make use of Apollo's existing offline(-ish) features (e.g. built-in c
 
 > With Apollo-Offline, the code of your queries and mutations looks exactly like it would without.
 
-There is one exception to this: The *"optimistic fetch"* feature.  
+There is one exception to this: The *"optimistic fetch"* feature.
 
 #### Optimistic Fetch
 What *"optimistic fetch"* does is it tries to first read a query's response from the cache, but if (and only if!) a network connection is available will get the server's response in the background and write it to the cache (at that point e.g. wrapped React components will update a second time).
@@ -19,7 +19,7 @@ Basically this means your UI's queries will always work if the requested data is
 
 *Note: In my opinion, this is what ```fetchPolicy: 'cache-and-network'``` should do (but doesn't - it errors if the server can't be reached).*
 
-To enable it, add an ```__offline__``` field with a truthy value to the query variables of that specific query (i.e. ```variables: { __offline__: true }```).  
+To enable it, add an ```__offline__``` field with a truthy value to the query variables of that specific query (i.e. ```variables: { __offline__: true }```).
 For further instructions, see the examples below.
 
 ## Install
@@ -37,8 +37,9 @@ npm install --save apollo-offline
 Apollo-Offline additionally requires you to have the following peer dependencies installed:
 - ```apollo-client```
 - ```redux```
-
 ## Usage (Examples)
+
+A runnable example app is available in [apollo-offline-examples](https://github.com/Malpaux/apollo-offline-examples).
 
 ### Setup
 ```javascript
@@ -81,7 +82,7 @@ export const store = createStore(
 );
 ```
 
-*Note: Once set up, apollo-offline intercepts all queries/mutations to enable its seamless offline-first behaviour.  
+*Note: Once set up, apollo-offline intercepts all queries/mutations to enable its seamless offline-first behaviour.
 If you want to selectively exclude some queries/mutations from this, you can revert back to Apollo's default behaviour by adding an ```__online__``` field with a truthy value to the query variables of that specific query/mutation (i.e. ```variables: { __online__: true }```).*
 
 ### Vanilla JS
